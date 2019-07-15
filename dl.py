@@ -44,8 +44,8 @@ for file in os.listdir(srcfolder):
         x = threading.Thread(target=process, args=(url, savename, header,))
         x.start()
         pcount = pcount + 1
-        if pcount >= 3:
-          time.sleep(6)
+        if pcount >= 4:
+          time.sleep(5)
           pcount = 0
 
       #print(url, savename)

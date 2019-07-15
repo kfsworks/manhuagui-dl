@@ -11,16 +11,10 @@ import time
 
 def process(url, savefilename, headerstr):
   r = requests.get(url, stream=True, headers={'Referer': headerstr})
-  #if r.status_code == 200:
   r.raise_for_status()
   r.raw.decode_content = True  # Required to decompress gzip/deflate compressed responses.
   with Image.open(r.raw) as img:
     img.save(savefilename)
-#  with open(savefilename, 'wb') as f:
-#      r.raw.decode_content = True
-#      img = PIL.Image.open(r.raw)
-#    img.show()
-#img = Image.open(requests.get(url, stream = True).raw)
   r.close()
   print('done ' + savefilename);
 
@@ -52,27 +46,3 @@ for file in os.listdir(srcfolder):
       #print('https://%s%s%s?cid=%s&md5=%s' % (host, src['path'],n, src['cid'], src['sl']['md5']))
       #print('%s-%s-%s' % (src['bname'], src['cname'], n))
 
-#import shutil
-#r = requests.get(settings.STATICMAP_URL.format(**data), stream=True)
-#if r.status_code == 200:
-#    with open(path, 'wb') as f:
-#        r.raw.decode_content = True
-#        shutil.copyfileobj(r.raw, f)
-#
-#from PIL import Image
-#import requests
-#img = Image.open(requests.get(url, stream = True).raw)
-#img.save('img1.jpg')
-#
-#r = requests.get('http://lorempixel.com/400/200', stream=True)
-#r.raise_for_status()
-#r.raw.decode_content = True  # Required to decompress gzip/deflate compressed responses.
-#with PIL.Image.open(r.raw) as img:
-#    img.show()
-#r.close()
-#
-#response = requests.get(
-#    'https://api.github.com/search/repositories',
-#    params={'q': 'requests+language:python'},
-#    headers={'Accept': 'application/vnd.github.v3.text-match+json'},
-#)

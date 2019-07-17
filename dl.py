@@ -27,7 +27,7 @@ srcfolder = os.fsencode(srcpath)
 pcount = 0
 for file in os.listdir(srcfolder):
   filename = srcpath + '/' + os.fsdecode(file)
-  print('-- reading  %s' % (filename))
+#  print('-- reading  %s' % (filename))
   with open(filename, "r") as fd:
     src = json.load(fd)
     for n in src['files']:
@@ -39,7 +39,7 @@ for file in os.listdir(srcfolder):
         x = threading.Thread(target=process, args=(url, savename, header,))
         x.start()
         pcount = pcount + 1
-        if pcount >= 10:
+        if pcount >= 20:
           time.sleep(4)
           pcount = 0
 
